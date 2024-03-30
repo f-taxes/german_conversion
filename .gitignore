@@ -1,0 +1,5 @@
+tmp/
+tmp_uploads/
+frontend-dist/
+node_modules/
+prices/

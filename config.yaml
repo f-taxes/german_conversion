@@ -1,0 +1,4 @@
+symbolAliases:
+  USDC: USD
+  USDT: USD
+attemptIndirectConversion: true
