@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"os"
+	"time"
 
 	"github.com/f-taxes/german_conversion/conf"
 	"github.com/f-taxes/german_conversion/ctl"
@@ -41,6 +42,13 @@ func main() {
 	if err != nil {
 		golog.Fatal(err)
 	}
+
+	go func() {
+		for {
+			g.GrpcClient.PluginHeartbeat(context.Background())
+			time.Sleep(time.Second * 5)
+		}
+	}()
 
 	conf.LoadAppConfig("./config.yaml")
 

@@ -57,3 +57,8 @@ func (c *FTaxesClient) ShowJobProgress(ctx context.Context, job *proto.JobProgre
 	_, err := c.GrpcClient.ShowJobProgress(ctx, job)
 	return err
 }
+
+func (c *FTaxesClient) PluginHeartbeat(ctx context.Context) error {
+	_, err := c.GrpcClient.PluginHeartbeat(ctx, &proto.PluginInfo{ID: global.Plugin.ID, Version: global.Plugin.Version, HasCtlServer: global.Plugin.Ctl.Address != ""})
+	return err
+}

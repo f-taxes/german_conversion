@@ -82,7 +82,20 @@ func EnsurePrices() error {
 			return err
 		}
 
-		req.Header.Set("User-Agent", "Golang/3.0")
+		req.Header.Set("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
+		req.Header.Set("accept-language", "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7,en-DE;q=0.6")
+		req.Header.Set("cache-control", "no-cache")
+		req.Header.Set("pragma", "no-cache")
+		req.Header.Set("priority", "u=0, i")
+		req.Header.Set("sec-ch-ua", `"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"`)
+		req.Header.Set("sec-ch-ua-mobile", "?0")
+		req.Header.Set("sec-ch-ua-platform", `"Linux"`)
+		req.Header.Set("sec-fetch-dest", "document")
+		req.Header.Set("sec-fetch-mode", "navigate")
+		req.Header.Set("sec-fetch-site", "none")
+		req.Header.Set("sec-fetch-user", "?1")
+		req.Header.Set("upgrade-insecure-requests", "1")
+		req.Header.Set("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
 		response, err := client.Do(req)
 		if err != nil {
@@ -96,6 +109,8 @@ func EnsurePrices() error {
 		if err != nil {
 			return err
 		}
+
+		os.WriteFile(filepath.Join(folder, fmt.Sprintf("ger_offical_rates_%d.csv", year)), csvContent, 0755)
 
 		reader := csv.NewReader(bytes.NewReader(csvContent))
 		reader.Comma = ';'

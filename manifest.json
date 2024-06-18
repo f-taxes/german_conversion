@@ -16,6 +16,6 @@
     "darwin": "https://github.com/f-taxes/german_conversion/releases/download/1.0.0/german_conversion-darwin.zip"
   },
   "ctl": {
-    "address": "127.0.0.1:40104"
+    "address": "127.0.0.1:4110"
   }
 }

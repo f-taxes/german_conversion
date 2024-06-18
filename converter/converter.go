@@ -43,5 +43,5 @@ func PriceAtTime(asset, targetCurrency string, ts time.Time) (decimal.Decimal, e
 		return decimal.Zero, nil
 	}
 
-	return rate, nil
+	return global.StrToDecimal("1").Div(rate).Round(4), nil
 }
